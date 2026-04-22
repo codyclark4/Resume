@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cody Clark – Senior Systems Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f2eb;
+    --accent: #c84b2f;
+    --blue: #1a3a5c;
+    --muted: #6b6560;
+    --rule: #d4cfc7;
+    --highlight: #fff8e7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 3rem 1.5rem;
+  }
+
+  .page { max-width: 860px; margin: 0 auto; }
+
+  /* ── Masthead ── */
+  .masthead {
+    border-top: 4px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding: 1.5rem 0 1.25rem;
+    margin-bottom: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 1rem;
+  }
+
+  .name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .name span { color: var(--accent); }
+
+  .tagline {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  .meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: right;
+    line-height: 1.9;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::after { content:''; flex:1; height:1px; background:var(--rule); }
+
+  /* ── Stat strip ── */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 3rem;
+  }
+
+  .stat { background: var(--paper); padding: 1.1rem 1.25rem; transition: background 0.15s; }
+  .stat:hover { background: var(--highlight); }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label { font-size: 0.7rem; color: var(--muted); line-height: 1.4; }
+
+  /* ── Experience blocks ── */
+  .exp-block { margin-bottom: 3rem; }
+
+  .exp-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 0;
+  }
+
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .exp-company {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.25rem;
+  }
+
+  .exp-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+    margin-top: 0.2rem;
+  }
+
+  .bullets { display: flex; flex-direction: column; }
+
+  .bullet-item {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    border-bottom: 1px solid var(--rule);
+    padding: 0.95rem 0.2rem;
+    gap: 0.5rem;
+    align-items: start;
+    transition: background 0.15s;
+    cursor: default;
+  }
+  .bullet-item:hover { background: var(--highlight); }
+
+  .bullet-icon {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-top: 0.15rem;
+  }
+
+  .bullet-body {
+    font-size: 0.91rem;
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .bullet-body strong { font-weight: 500; }
+
+  .kicker {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: rgba(200,75,47,0.08);
+    padding: 0.1em 0.5em;
+    border-radius: 2px;
+    margin-right: 0.4em;
+    vertical-align: middle;
+  }
+
+  .kicker.blue {
+    color: var(--blue);
+    background: rgba(26,58,92,0.08);
+  }
+
+  /* ── Promotion note ── */
+  .promo-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--blue);
+    background: rgba(26,58,92,0.06);
+    border-left: 3px solid var(--blue);
+    padding: 0.5rem 0.85rem;
+    margin-bottom: 0;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Confluence Doc Library ── */
+  .confluence-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    padding: 0.7rem 1rem;
+    background: rgba(26,58,92,0.05);
+    border: 1px solid rgba(26,58,92,0.15);
+    border-top: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .confluence-toggle:hover { background: rgba(26,58,92,0.1); }
+  .confluence-toggle .arrow {
+    display: inline-block;
+    transition: transform 0.2s;
+    font-size: 0.6rem;
+  }
+  .confluence-toggle.open .arrow { transform: rotate(90deg); }
+
+  .confluence-panel {
+    display: none;
+    border: 1px solid rgba(26,58,92,0.15);
+    border-top: none;
+    background: #f9f7f2;
+    padding: 1.25rem 1.25rem 0.5rem;
+    margin-bottom: 0;
+  }
+  .confluence-panel.open { display: block; }
+
+  .doc-category {
+    margin-bottom: 1.25rem;
+  }
+
+  .doc-category-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--blue);
+    border-bottom: 1px solid rgba(26,58,92,0.15);
+    padding-bottom: 0.35rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .doc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .doc-item {
+    display: grid;
+    grid-template-columns: 1.1rem 1fr;
+    gap: 0.5rem;
+    font-size: 0.83rem;
+    line-height: 1.5;
+    font-weight: 300;
+    color: var(--ink);
+    align-items: start;
+  }
+
+  .doc-item .doc-icon {
+    font-size: 0.7rem;
+    color: var(--blue);
+    margin-top: 0.18rem;
+  }
+
+  .doc-item strong { font-weight: 500; }
+  .doc-item span {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── Skills / certs ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.75rem; }
+  @media (max-width: 580px) { .two-col { grid-template-columns: 1fr; } }
+
+  .tags-grid { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.85rem; }
+
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    padding: 0.3em 0.7em;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    transition: all 0.15s;
+  }
+  .tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(200,75,47,0.04); }
+  .tag.cert { border-color: var(--blue); color: var(--blue); }
+
+  /* ── About strip ── */
+  .about-strip {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 3rem;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .about-strip strong { font-weight: 500; color: #f5c9a0; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .bullet-item:hover, .stat:hover { background: transparent; }
+  }
+
+  @media (max-width: 520px) {
+    .masthead { grid-template-columns: 1fr; }
+    .meta { text-align: left; }
+    .exp-header { grid-template-columns: 1fr; }
+    .exp-date { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Masthead -->
+  <div class="masthead">
+    <div>
+      <div class="name">Cody <span>Clark</span></div>
+      <div class="tagline">Senior Systems Engineer · Cloud, Network & Infrastructure Leadership</div>
+    </div>
+    <div class="meta">
+      Memphis, Tennessee<br>
+      codyclark4@gmail.com<br>
+      901-230-7452<br>
+      linkedin.com/in/codyclark4<br>
+      Open to: NOC Manager · Cloud Engineer
+    </div>
+  </div>
+
+  <!-- About -->
+  <div class="section-label">Profile</div>
+  <div class="about-strip">
+    <strong>10+ years</strong> building and leading IT infrastructure across cloud, networking, and security disciplines. Proven track record directing <strong>million-dollar projects</strong> — from a $20M+ headquarters relocation to enterprise Azure platform builds — while also stepping into management to grow and lead technical teams. Equally effective as a hands-on engineer and as the person accountable for organizational outcomes.
+  </div>
+
+  <!-- Stats -->
+  <div class="section-label">Impact at a glance</div>
+  <div class="stat-strip">
+    <div class="stat">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">Years in IT infrastructure & cloud engineering</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">3</div>
+      <div class="stat-label">Azure regions in production vWAN fabric built from scratch</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">$8.5k</div>
+      <div class="stat-label">Monthly savings uncovered via FinOps enforcement in Q1</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">10Gbps</div>
+      <div class="stat-label">Sustained throughput for AI training pipelines</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">$20M+</div>
+      <div class="stat-label">HQ relocation project directed end-to-end</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">98%</div>
+      <div class="stat-label">SLA completion rate achieved in 2022–2023</div>
+    </div>
+  </div>
+
+  <!-- TENNESSEE TREASURY -->
+  <div class="section-label">Experience</div>
+  <div class="exp-block">
+    <div class="exp-header">
+      <div>
+        <div class="exp-role">Cloud Platform Engineer</div>
+        <div class="exp-company">Tennessee Department of Treasury · State Government</div>
+      </div>
+      <div class="exp-date">Sep 2025 – Present<br>~8 mos</div>
+    </div>
+    <div class="bullets">
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">Platform Foundation</span>
+          <strong>Architected the organization's Azure cloud platform from the ground up</strong> — a production-grade virtual WAN spanning three regions with Azure Firewall Premium, ExpressRoute hybrid connectivity, and routing intent as the foundational network fabric for all future workloads.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">Developer Velocity</span>
+          <strong>Cut application onboarding to under 30 minutes</strong> by codifying repeatable landing zone patterns in Bicep — teams provision full environments through a single parameter file, eliminating weeks of back-and-forth with the platform team.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">CI/CD & Automation</span>
+          <strong>Replaced manual provisioning with a PR-based self-service model</strong> backed by GitHub Actions CI/CD pipelines and what-if validation gates — dramatically reducing platform team toil and eliminating drift between declared and deployed state.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">Zero-Trust Security</span>
+          <strong>Engineered a Zero-Trust ingress architecture with zero public IP exposure</strong> on any backend resource — leveraging Azure Front Door Premium, Private Link Service, and Internal Load Balancer so no workload is reachable from the public internet.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">DNS & Private Networking</span>
+          <strong>Established enterprise-wide Private DNS Zone management</strong> through a centralized hub pattern, enabling seamless private endpoint resolution for App Service, Storage, SQL, and Key Vault across all business units — once, consistently.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">Network Performance</span>
+          <strong>Tuned BGP attributes on ExpressRoute circuits with IPsec VPN failover</strong>, sustaining 10 Gbps throughput under load for AI model training pipelines — ensuring the network is never the bottleneck for compute-intensive workloads.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">FinOps</span>
+          <strong>Introduced tagging and FinOps enforcement in the platform hub</strong>, producing a monthly spend review artifact that surfaced <strong>$8,500/month in over-provisioned Azure Firewall capacity within the first quarter</strong> — turning infrastructure cost from a black box into an accountable, optimizable asset.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Confluence Doc Library -->
+    <div class="confluence-toggle" onclick="this.classList.toggle('open'); document.getElementById('confluence-panel').classList.toggle('open')">
+      <span class="arrow">▶</span>
+      📄 &nbsp;Engineering Documentation Library · Confluence
+    </div>
+    <div class="confluence-panel" id="confluence-panel">
+
+      <div class="doc-category">
+        <div class="doc-category-title">Platform Architecture</div>
+        <div class="doc-list">
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Azure Cloud Platform — Architecture Overview</strong> <span>· Hub-and-spoke topology, vWAN design decisions, region strategy, and routing intent rationale</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Virtual WAN Design Guide</strong> <span>· vHub configuration, secured hub deployment, branch connectivity patterns across 3 regions</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>ExpressRoute + IPsec VPN Failover Runbook</strong> <span>· BGP attribute tuning, failover validation procedures, throughput baseline documentation</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Network Segmentation & Routing Intent Policy</strong> <span>· Traffic flow matrix, firewall policy hierarchy, inter-spoke routing controls</span></div></div>
+        </div>
+      </div>
+
+      <div class="doc-category">
+        <div class="doc-category-title">Landing Zones & IaC</div>
+        <div class="doc-list">
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Application Landing Zone Onboarding Guide</strong> <span>· Step-by-step for app teams — single parameter file walkthrough, naming conventions, tagging requirements</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Bicep Module Library — Reference Catalog</strong> <span>· All reusable modules with input/output schemas, versioning policy, and known limitations</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>GitHub Actions CI/CD Pipeline Architecture</strong> <span>· PR workflow, what-if validation gates, approval stages, environment promotion strategy</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>IaC Contribution & PR Standards</strong> <span>· Branch strategy, linting requirements, peer review checklist, merge policies</span></div></div>
+        </div>
+      </div>
+
+      <div class="doc-category">
+        <div class="doc-category-title">Security & Zero-Trust</div>
+        <div class="doc-list">
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Zero-Trust Ingress Architecture</strong> <span>· Azure Front Door Premium → Private Link → ILB flow diagram, WAF policy, no-public-IP enforcement</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Azure Firewall Premium — Policy & Rule Management</strong> <span>· IDPS configuration, TLS inspection policy, rule collection hierarchy, change management process</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Private DNS Zone Management Standard</strong> <span>· Centralized hub pattern, zone ownership map, auto-registration policy, supported services (App Service, Storage, SQL, Key Vault)</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Microsoft Sentinel — Detection & Alerting Playbook</strong> <span>· Log source inventory, analytic rules, incident triage procedure, SOAR automation runbooks</span></div></div>
+        </div>
+      </div>
+
+      <div class="doc-category">
+        <div class="doc-category-title">FinOps & Governance</div>
+        <div class="doc-list">
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Azure Tagging & FinOps Enforcement Policy</strong> <span>· Mandatory tag schema, Azure Policy definitions, enforcement vs. audit mode decision matrix</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Monthly Cloud Spend Review — Template & Process</strong> <span>· Cost Management dashboard setup, anomaly detection configuration, stakeholder reporting cadence</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Azure Firewall Capacity Right-Sizing Analysis</strong> <span>· Methodology used to identify $8.5k/mo in over-provisioned capacity; reusable framework for future reviews</span></div></div>
+        </div>
+      </div>
+
+      <div class="doc-category">
+        <div class="doc-category-title">Operations & Runbooks</div>
+        <div class="doc-list">
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Platform Incident Response Playbook</strong> <span>· Severity classification, on-call escalation path, war room procedure, post-incident review template</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Private Endpoint Deployment Runbook</strong> <span>· Service-by-service deployment steps, DNS registration verification, common failure modes</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>Platform Change Management Process</strong> <span>· Change request workflow, risk classification, rollback procedures, CAB submission guidelines</span></div></div>
+          <div class="doc-item"><span class="doc-icon">▸</span><div><strong>New Engineer Onboarding — Cloud Platform Team</strong> <span>· Access provisioning checklist, repo structure walkthrough, key contacts, first-30-days guide</span></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GREYSTAR -->
+  <div class="exp-block">
+    <div class="exp-header">
+      <div>
+        <div class="exp-role">Senior Systems Engineer</div>
+        <div class="exp-company">Greystar · Full-time · Remote</div>
+      </div>
+      <div class="exp-date">Jun 2023 – Sep 2025<br>2 yrs 3 mos</div>
+    </div>
+    <div class="bullets">
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">Azure Cloud</span>
+          <strong>Built and managed enterprise Azure networking infrastructure</strong> — virtual networks, load balancers, firewall tiers, and hybrid connectivity — as the backbone for cloud-hosted workloads at scale.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">Modernization</span>
+          <strong>Migrated legacy cloud services to modern, scalable equivalents</strong>, reducing operational overhead and measurably improving system reliability for the engineering org.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">Network Transformation</span>
+          <strong>Migrated global branch connectivity to BGP and SD-WAN</strong>, optimizing routing efficiency and reducing network latency across distributed office locations.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">Endpoint Security</span>
+          <strong>Administered Fortinet EMS to enforce security policy</strong> from client devices through to Azure cloud infrastructure — closing the gap between endpoint posture and cloud perimeter.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">Infrastructure</span>
+          <strong>Led regional hardware upgrade project</strong> — replacing end-of-life equipment and performing configuration audits that improved overall security posture across affected sites.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">Process</span>
+          <strong>Developed Kanban-based processes and documentation</strong> to standardize project execution, ensuring consistent, on-time delivery across cross-functional technical teams.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker">Vendor Management</span>
+          <strong>Negotiated ISP, hardware, and support contracts</strong> to reduce costs and lock in improved service-level commitments across the technology vendor portfolio.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ORION -->
+  <div class="exp-block">
+    <div class="exp-header">
+      <div>
+        <div class="exp-role">Network Operations Manager</div>
+        <div class="exp-company">Orion Federal Credit Union · 4 yrs 10 mos total · Memphis, TN</div>
+      </div>
+      <div class="exp-date">Jun 2020 – May 2023<br>Full progression below</div>
+    </div>
+    <div class="promo-note">↑ Promoted: Network Engineer → Senior Network Engineer → Network Engineering Manager → Network Operations Manager</div>
+    <div class="bullets">
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker blue">Leadership</span>
+          <strong>Directed all IT infrastructure components of a $20M+ headquarters relocation</strong> — networking, physical security, and full data center migration — delivered on time and within scope.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker blue">SD-WAN</span>
+          <strong>Led SD-WAN deployment across 20+ branch locations</strong>, establishing high-availability connectivity and driving measurable improvements in network resilience and uptime for critical financial operations.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker blue">SLA Performance</span>
+          <strong>Managed network, security, and help desk operations to 98% SLA completion</strong> in 2022–2023 — a metric that directly reflects team execution and operational discipline.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker blue">Cloud & Security</span>
+          <strong>Delivered Microsoft 365 migration, AWS cloud strategy, and Cisco Umbrella / AMP / AnyConnect rollout</strong> — modernizing the security and productivity stack across the organization.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker blue">Infrastructure SME</span>
+          <strong>Served as subject matter expert for multi-server environments</strong> including DNS, IP architecture, SAN, and VMware virtualization — the go-to technical authority for complex infrastructure decisions.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker blue">Process & Tooling</span>
+          <strong>Introduced Agile/Jira and migrated help desk to a Salesforce-based ITSM platform</strong>, improving team velocity, ticket visibility, and audit-readiness for the IT org.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <span class="kicker blue">Strategy</span>
+          <strong>Contributed to RFIs and strategic planning for M&A activities</strong>, providing infrastructure due diligence and integration planning input at the executive level.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LOKION IT MANAGER -->
+  <div class="exp-block">
+    <div class="exp-header">
+      <div>
+        <div class="exp-role">IT Manager</div>
+        <div class="exp-company">Lokion · Memphis, TN</div>
+      </div>
+      <div class="exp-date">Dec 2016 – Jan 2019<br>2 yrs 2 mos</div>
+    </div>
+    <div class="bullets">
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <strong>Designed and built a custom Linux-based automated backup and disaster recovery solution</strong> using Amanda and Amazon Glacier — replacing a manual, error-prone process with a durable, auditable pipeline.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <strong>Drafted and implemented company-wide security policies</strong> aligned to NIST/ISO/IEC standards — including edge firewall upgrades, 2FA deployment, and host-level security hardening.
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">▸</div>
+        <div class="bullet-body">
+          <strong>Established documented onboarding and offboarding procedures</strong> for IT operations, reducing risk and creating repeatable processes that scaled beyond a single administrator.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Skills & Certs -->
+  <div class="two-col">
+    <div>
+      <div class="section-label">Technologies</div>
+      <div class="tags-grid">
+        <span class="tag">Azure Networking</span>
+        <span class="tag">vWAN</span>
+        <span class="tag">Azure Firewall</span>
+        <span class="tag">ExpressRoute</span>
+        <span class="tag">BGP</span>
+        <span class="tag">SD-WAN</span>
+        <span class="tag">Fortinet EMS</span>
+        <span class="tag">Cisco Umbrella</span>
+        <span class="tag">VMware</span>
+        <span class="tag">AWS</span>
+        <span class="tag">Microsoft 365</span>
+        <span class="tag">DNS / IP Arch</span>
+        <span class="tag">SAN</span>
+        <span class="tag">Python</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Jira / Agile</span>
+        <span class="tag">Salesforce ITSM</span>
+        <span class="tag">Bicep</span>
+        <span class="tag">Terraform</span>
+        <span class="tag">IaC</span>
+        <span class="tag">PowerShell</span>
+        <span class="tag">Kubernetes</span>
+        <span class="tag">Microsoft Sentinel</span>
+        <span class="tag">GitHub Actions</span>
+        <span class="tag">Zero-Trust</span>
+      </div>
+    </div>
+    <div>
+      <div class="section-label">Credentials</div>
+      <div class="tags-grid">
+        <span class="tag cert">AWS SysOps Admin – Associate</span>
+        <span class="tag cert">CCNP Enterprise</span>
+        <span class="tag cert">CCNP Routing & Switching</span>
+        <span class="tag cert">CCNA Security</span>
+        <span class="tag cert">CCNA Routing & Switching</span>
+        <span class="tag cert">CompTIA Security+</span>
+        <span class="tag cert">CompTIA Cloud Essentials+</span>
+        <span class="tag cert">CompTIA Project+</span>
+        <span class="tag cert">LPI Linux Essentials</span>
+        <span class="tag cert">ITIL Foundation</span>
+        <span class="tag cert">B.S. Network Operations & Security — WGU</span>
+        <span class="tag cert">A.A.S. Computer Networking — SWTN CC</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
